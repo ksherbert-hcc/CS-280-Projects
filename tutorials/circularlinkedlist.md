@@ -42,13 +42,13 @@ You must carefully consider how to handle this case also, because there is no su
 Actually, it is very likely your implementation of `insert` does not need a separate case for appending, because simply using the value of `null` for the subsequent node will result in the desired behavior.
 
 Appending to a list is one of the most intuitive and common list operations.
-However, it is not efficient for a `LinkedList`, because you need to traverese the entire list before you can update the link on the last node.
+However, it is not efficient for a `LinkedList`, because you need to traverse the entire list before you can update the link on the last node.
 
 
 
 # The `CircularLinkedList`
 ## One More Link
-We now introduce a new data structure, very similar to the LinkedList but with one structural difference: the last node no longer links to NULL, but *back to the first node*.
+We now introduce a new data structure, very similar to the LinkedList but with one structural difference: the last node no longer links to `NULL`, but *back to the first node*.
 Thus, the diagram forms a sort of cycle - or, you might say, a circle.
 
 <img src="CircularLinkedList/Figure6.png" alt="Circular Linked List Diagram" width="800em">
@@ -59,11 +59,11 @@ If we follow the same steps that we do for the `LinkedList`, updating `head` and
 
 <img src="CircularLinkedList/Figure7.png" alt="Circular Linked List Prepend Incomplete" width="800em">
 
-We aren't finished! *We have to update the link on the last node.*
+We aren't finished! *We have to update the link on the last node,* so that it points to the new head.
 But as we saw with the `LinkedList`, updating the link on the last node is not efficient.
 We would have to traverse through the entire list.
 
-The `CircularLinkedList` data structure resolves this issue by adopting the *last* node as a link stored by the `CircularLinkedList` object itself.
+The `CircularLinkedList` data structure resolves this inefficiency by adopting the *last* node as a link stored by the `CircularLinkedList` object itself.
 We call it the `tail` rather than the `head`.
 
 <img src="CircularLinkedList/Figure8.png" alt="Circular Linked List with Tail" width="800em">
@@ -78,10 +78,10 @@ In fact, for a `CircularLinkedList`, if we have O(1) access to the tail, then we
 <img src="CircularLinkedList/Figure10.png" alt="Circular Linked List Prepend with Tail no Head" width="800em">
 
 ## Efficient Append
-In the previous section, we saw that retaining an efficient prepend operation in the 
-But since we have access to the end of the list, we can now easily *append* as well.
+In the previous section, we saw that retaining an efficient prepend operation in the `CircularLinkedList` required replacing our `head` instance variable with `tail`.
+Now that we have access to the end of the list, we can easily *append* as well.
 
 <img src="CircularLinkedList/Figure11.png" alt="Circular Linked List Append" width="800em">
 
-In fact, the structure of a `CircularLinkedList` is identical whether we *prepend* or *append*.
+In fact, the memory structure of a `CircularLinkedList` is identical whether we *prepend* or *append*.
 The *only* difference between the last two pictures is that, when appending, we update the `tail` maintained by `CircularLinkedList` itself.
